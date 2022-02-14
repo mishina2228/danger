@@ -17,13 +17,12 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
 
-    - name: Build and test with Rake
+    - run: git config --global user.email "orta+dangersystems@artsy.net"
+    - run: git config --global user.name "Danger.Systems"
+    - name: Running Tests
+      run: bundle exec rake spec
+    - name: Running the Dangerfile for this repo
       run: |
-        git config --global user.email "orta+dangersystems@artsy.net"
-        git config --global user.name "Danger.Systems"
-
-        bundle exec rake spec
-
         TOKEN='7469b4e94ce21b43e3ab7a'
         TOKEN+='79960c12a1e067f2ec'
         DANGER_GITHUB_API_TOKEN=$TOKEN RUNNING_IN_ACTIONS=true echo 'bundle exec danger --verbose'
