@@ -17,8 +17,10 @@ jobs:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
 
-    - run: git config --global user.email "orta+dangersystems@artsy.net"
-    - run: git config --global user.name "Danger.Systems"
+    - name: Configure Git email/username
+      run: |
+        git config --global user.email "orta+dangersystems@artsy.net"
+        git config --global user.name "Danger.Systems"
     - name: Running Tests
       run: bundle exec rake spec
     - name: Running the Dangerfile for this repo
